@@ -1,0 +1,34 @@
+{
+  "datadiri": [
+    {
+      "nama": "vincentius",
+      "usia": "123",
+      "pekerjaan": "guru",
+      "id": 1
+    },
+    {
+      "nama": "vincentius",
+      "usia": "123",
+      "pekerjaan": "guru",
+      "id": 2
+    },
+    {
+      "nama": "vincentius",
+      "usia": "123",
+      "pekerjaan": "kurir",
+      "id": 3
+    },
+    {
+      "nama": "vincentius",
+      "usia": "123",
+      "pekerjaan": "kurir",
+      "id": 4
+    },
+    {
+      "nama": "vincentius",
+      "usia": "123",
+      "pekerjaan": "tidak kerja",
+      "id": 5
+    }
+  ]
+}
