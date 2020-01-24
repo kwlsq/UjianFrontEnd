@@ -104,15 +104,18 @@ class Home extends React.Component {
     filterData=()=>{
         var x = document.getElementById('option1').value
         console.log(x)
-        Axios.get(API_URL+`/datadiri?pekerjaan=${x}`)
-        .then((res)=>{
-            this.setState({pekerjaan:res.data})
-            console.log(this.state.pekerjaan)
-            this.setState({filterpekerjaan:x})
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
+        if(x!=="Filter By Pekerjaan"){
+            Axios.get(API_URL+`/datadiri?pekerjaan=${x}`)
+            .then((res)=>{
+                this.setState({pekerjaan:res.data})
+                console.log(this.state.pekerjaan)
+                this.setState({filterpekerjaan:x})
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+        } 
+        this.setState({filterpekerjaan:null})
         console.log('pekerjaan')
         console.log(x)
     }
@@ -170,6 +173,7 @@ class Home extends React.Component {
             )
         })
     }
+
     render() {
         return (
             <div>
