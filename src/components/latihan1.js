@@ -80,16 +80,22 @@ class Home extends React.Component {
     //Delete Semua Data
     deleteAllData = () => {
         let { data } = this.state
-        console.log(data.length)
-        for (var i = 0; i < data.length + 1; i++) {
-            Axios.delete(API_URL + `/datadiri/${i}`)
+        let temp =[]
+        for (var i = 0; i < data.length; i++) {
+            console.log(data[i].id)
+            temp.push(data[i].id)
+        }
+        console.log(temp)
+        for (var j=0;j<temp.length;j++){
+            console.log(temp[j])
+            Axios.delete(API_URL + `/datadiri/${temp[j]}`)
                 .then((res) => {
-                    console.log(res)
-                    this.getData()
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
+                            console.log(res)
+                            this.getData()
+                        })
+                        .catch((err) => {
+                                    console.log(err)
+                                })
         }
     }
 
