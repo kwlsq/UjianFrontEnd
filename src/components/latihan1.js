@@ -5,7 +5,8 @@ class Home extends React.Component {
     state = {
         data: [],
         selectedId: null,
-        selectedPekerjaan:null
+        pekerjaan:[],
+        filterpekerjaan:null
     }
     componentDidMount() {
         this.getData();
@@ -100,20 +101,39 @@ class Home extends React.Component {
     }
 
     //Filter berdasarkan pekerjaan
-    filterData=(pekerjaan)=>{
-        Axios.get(API_URL+`/datadiri?guru`)
+    filterData=()=>{
+        var x = document.getElementById('option1').value
+        console.log(x)
+        Axios.get(API_URL+`/datadiri?pekerjaan=${x}`)
         .then((res)=>{
-            console.log(res)
-            
+            this.setState({pekerjaan:res.data})
+            console.log(this.state.pekerjaan)
+            this.setState({filterpekerjaan:x})
         })
         .catch((err)=>{
             console.log(err)
         })
         console.log('pekerjaan')
+        console.log(x)
     }
 
     renderTable = () => {
-        let { data, selectedId } = this.state;
+        let { data, selectedId,filterpekerjaan,pekerjaan } = this.state;
+        if(filterpekerjaan!==null){
+            return pekerjaan.map((val)=>{
+                return(
+                    <tr>
+                    <td>{val.nama}</td>
+                    <td>{val.usia}</td>
+                    <td>{val.pekerjaan}</td>
+                    <td>
+                        <input type='button' value='Edit Data' onClick={() => this.setState({ selectedId: val.id })} />
+                        <input type='button' value='Delete Data' onClick={() => this.deleteData(val.id)} />
+                    </td>
+                </tr>
+                )
+            })
+        }
         return data.map((val) => {
             if (val.id === selectedId) {
                 return (
@@ -156,7 +176,7 @@ class Home extends React.Component {
                 <h1>SOAL 1</h1>
                 <div className='row'>
                     <div className='col-md-4 mb-4'>
-                        <select onChange={()=>this.filterData()} className='form-control'>
+                        <select id="option1" onChange={()=>this.filterData()} className='form-control'>
                             <option>Filter By Pekerjaan</option>
                             {this.renderFilter()}
                         </select>
