@@ -118,9 +118,9 @@ class Home extends React.Component {
             if (val.id === selectedId) {
                 return (
                     <tr>
-                        <td><input type='text' ref="editNama" placeholder={val.nama} /></td>
-                        <td><input type='text' ref="editUsia" placeholder={val.usia} /></td>
-                        <td><input type='text' ref="editPekerjaan" placeholder={val.pekerjaan} /></td>
+                        <td><input type='text' ref="editNama" value={val.nama} placeholder={val.nama} /></td>
+                        <td><input type='text' ref="editUsia" value={val.usia} placeholder={val.usia} /></td>
+                        <td><input type='text' ref="editPekerjaan" value={val.pekerjaan} placeholder={val.pekerjaan} /></td>
                         <td>
                             <input type='button' className='form-control' value="Confirm" onClick={() => this.editData(val.id)} />
                             <input type='button' className='form-control' value="Cancel" onClick={() => this.setState({ selectedId: null })} />
